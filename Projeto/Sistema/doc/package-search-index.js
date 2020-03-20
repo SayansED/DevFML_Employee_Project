@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"sistema"},{"l":"sistema.entidades"},{"l":"sistema.telas"},{"l":"sqlite"}]
