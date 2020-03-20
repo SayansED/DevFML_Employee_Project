@@ -9,11 +9,10 @@ import sistema.Navegador;
 
 public class Login extends JPanel {
 
-    JLabel labelUsuario;
-    JTextField campoUsuario;
-    JLabel labelSenha;
-    JPasswordField campoSenha;
-    JButton botaoEntrar, botaoSair;
+    JLabel lblUsuario, lblSenha;
+    JTextField txtUsuario;
+    JPasswordField ptxtSenha;
+    JButton btnEntrar, btnSair;
     ImageIcon imgLogin = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\login02.png");
     ImageIcon imgExit = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\exit01.png");
 
@@ -31,30 +30,30 @@ public class Login extends JPanel {
         JLabel labelTitulo = new JLabel("Seja Bem vindo ao Sistema", JLabel.CENTER);
         labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 18));
 
-        labelUsuario = new JLabel("Usuário", JLabel.LEFT);
-        campoUsuario = new JFormattedTextField();
-        labelSenha = new JLabel("Senha", JLabel.LEFT);
-        campoSenha = new JPasswordField();
-        botaoEntrar = new JButton("Login", imgLogin);
-        botaoSair = new JButton("Sair", imgExit);
+        lblUsuario = new JLabel("Usuário", JLabel.LEFT);
+        txtUsuario = new JFormattedTextField();
+        lblSenha = new JLabel("Senha", JLabel.LEFT);
+        ptxtSenha = new JPasswordField();
+        btnEntrar = new JButton("Login", imgLogin);
+        btnSair = new JButton("Sair", imgExit);
 
         // Posicionamentos e o tamanho dos componentes na tela
         labelTitulo.setBounds(20, 100, 660, 40);
-        labelUsuario.setBounds(250, 220, 200, 20);
-        campoUsuario.setBounds(250, 240, 230, 40);
-        labelSenha.setBounds(250, 280, 200, 20);
-        campoSenha.setBounds(250, 300, 230, 40);
-        botaoEntrar.setBounds(250, 350, 200, 40);
-        botaoSair.setBounds(250, 400, 200, 40);
+        lblUsuario.setBounds(250, 220, 200, 20);
+        txtUsuario.setBounds(250, 240, 230, 40);
+        lblSenha.setBounds(250, 280, 200, 20);
+        ptxtSenha.setBounds(250, 300, 230, 40);
+        btnEntrar.setBounds(250, 350, 200, 40);
+        btnSair.setBounds(250, 400, 200, 40);
 
         // Adcionando componentes à tela
         add(labelTitulo);
-        add(labelUsuario);
-        add(campoUsuario);
-        add(labelSenha);
-        add(campoSenha);
-        add(botaoEntrar);
-        add(botaoSair);
+        add(lblUsuario);
+        add(txtUsuario);
+        add(lblSenha);
+        add(ptxtSenha);
+        add(btnEntrar);
+        add(btnSair);
 
         // Visibilidade do Frame
         setVisible(true);
@@ -62,15 +61,15 @@ public class Login extends JPanel {
 
     private void criarEventos(){
     	// Login
-        botaoEntrar.addActionListener(new ActionListener(){
+        btnEntrar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 // Validando as credenciais
-                if(campoUsuario.getText().equals("admin") && new String(campoSenha.getPassword()).equals("admin")) {
+                if(txtUsuario.getText().equals("admin") && new String(ptxtSenha.getPassword()).equals("admin")) {
                     // Abrir 02
                     Navegador.inicio();
                 }
-                else if(campoUsuario.getText().isEmpty() || campoSenha.getText().isEmpty()) {
+                else if(txtUsuario.getText().isEmpty() || ptxtSenha.getText().isEmpty()) {
                 	JOptionPane.showMessageDialog(null, "Preencha todos os campo", "Validação", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
@@ -80,7 +79,7 @@ public class Login extends JPanel {
         });
         
         // Exit
-        botaoSair.addActionListener(new ActionListener() {
+        btnSair.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
         		System.exit(0);

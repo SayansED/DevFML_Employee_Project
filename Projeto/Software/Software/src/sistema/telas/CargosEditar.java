@@ -25,10 +25,10 @@ import sqlite.Conexao;
 public class CargosEditar extends JPanel {
 
 	Cargo cargoAtual = new Cargo();
-	JLabel labelTitulo, labelCargo;
-	JTextField campoCargo;
-	JButton botaoGravar;
-	ImageIcon imgSobrescrever = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\overwrite01.png");
+	JLabel lblTitle, lblCargo;
+	JTextField txtCargo;
+	JButton btnSave;
+	ImageIcon imgIconSobrescrever = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\overwrite01.png");
 
 	public CargosEditar(Cargo cargo){
 		cargoAtual = cargo;
@@ -40,32 +40,32 @@ public class CargosEditar extends JPanel {
 	private void criarComponentes() {
 		setLayout(null);
 
-		labelTitulo = new JLabel("Editar de Cargo", JLabel.CENTER);
-		labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));      
-		labelCargo = new JLabel("Nome do cargo", JLabel.LEFT);
-		campoCargo = new JTextField();
-		botaoGravar = new JButton("Salvar", imgSobrescrever);
+		lblTitle = new JLabel("Editar de Cargo", JLabel.CENTER);
+		lblTitle.setFont(new Font(lblTitle.getFont().getName(), Font.PLAIN, 20));      
+		lblCargo = new JLabel("Nome do cargo", JLabel.LEFT);
+		txtCargo = new JTextField();
+		btnSave = new JButton("Salvar", imgIconSobrescrever);
 
 
-		labelTitulo.setBounds(20, 20, 660, 40);
-		labelCargo.setBounds(150, 120, 400, 20);
-		campoCargo.setBounds(150, 140, 400, 40);
-		botaoGravar.setBounds(250, 380, 150, 40); 
+		lblTitle.setBounds(20, 20, 660, 40);
+		lblCargo.setBounds(150, 120, 400, 20);
+		txtCargo.setBounds(150, 140, 400, 40);
+		btnSave.setBounds(250, 380, 150, 40); 
 
-		add(labelTitulo);
-		add(labelCargo);
-		add(campoCargo);
-		add(botaoGravar);
+		add(lblTitle);
+		add(lblCargo);
+		add(txtCargo);
+		add(btnSave);
 
 		setVisible(true);
 	}
 
 	private void criarEventos() {
-		botaoGravar.addActionListener(new ActionListener() {
+		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Validando nome e campo
-				if(campoCargo.getText().isEmpty() || campoCargo.getText().length() <= 3) {
+				if(txtCargo.getText().isEmpty() || txtCargo.getText().length() <= 3) {
 					JOptionPane.showMessageDialog(null, "Preencha o campo corretamente", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
@@ -87,7 +87,7 @@ public class CargosEditar extends JPanel {
 			// conectando ao banco de dados
 			conexao.conectar();
 			// criando a instrução SQL
-			String srt = campoCargo.getText();
+			String srt = txtCargo.getText();
 			String alterando = JOptionPane.showInputDialog("Digite o novo nome para ser inserido");
 			String sqlUpdate = "UPDATE T_CARGOS SET nome = ? WHERE nome = ?;"; // Codigo de atualização
 			preparedStatement = conexao.criarPreparedStatement(sqlUpdate);

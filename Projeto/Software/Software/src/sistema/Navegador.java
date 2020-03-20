@@ -1,11 +1,15 @@
 package sistema;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import sistema.entidades.Cargo;
 import sistema.entidades.Funcionario;
@@ -31,50 +35,50 @@ public class Navegador {
     private static JMenuItem miCargosCadastrar, miRelatoriosCargos, miRelatoriosSalarios;
     
     public static void login(){
-        Sistema.tela = new Login();
-        Sistema.frame.setTitle("Funcionários Company - V1.3.2");
+        Sistema.JPtela = new Login();
+        Sistema.JFframe.setTitle("Funcionários Company - V1.3.4");
         Navegador.atualizarTela();
     }
     
     public static void inicio(){
-        Sistema.tela = new Inicio();
-        Sistema.frame.setTitle("Funcionários Company - V1.3.2");
+        Sistema.JPtela = new Inicio();
+        Sistema.JFframe.setTitle("Funcionários Company - V1.3.4");
         Navegador.atualizarTela();
     }
     
     public static void funcionariosCadastrar(){
-        Sistema.tela = new FuncionariosInserir();   
-        Sistema.frame.setTitle("Funcionários Company - Cadastrar funcionários - V1.3.2");     
+        Sistema.JPtela = new FuncionariosInserir();   
+        Sistema.JFframe.setTitle("Funcionários Company - Cadastrar funcionários - V1.3.4");     
         Navegador.atualizarTela();
     }
     
     public static void funcionariosConsultar(){
-        Sistema.tela = new FuncionariosConsultar();
-        Sistema.frame.setTitle("Funcionários Company - Consultar funcionários - V1.3.2");     
+        Sistema.JPtela = new FuncionariosConsultar();
+        Sistema.JFframe.setTitle("Funcionários Company - Consultar funcionários - V1.3.4");     
         Navegador.atualizarTela();
     }
     
     public static void funcionariosEditar(String funcionarioAtual){
-        Sistema.tela = new FuncionariosEditar(funcionarioAtual);  
-        Sistema.frame.setTitle("Funcionários Company - Editar funcionários - V1.3.2");           
+        Sistema.JPtela = new FuncionariosEditar(funcionarioAtual);  
+        Sistema.JFframe.setTitle("Funcionários Company - Editar funcionários - V1.3.4");           
         Navegador.atualizarTela();
     }
     
     public static void cargosCadastrar(){
-        Sistema.tela = new CargosInserir();
-        Sistema.frame.setTitle("Funcionários Company - Cadastrar cargos - V1.3.2");
+        Sistema.JPtela = new CargosInserir();
+        Sistema.JFframe.setTitle("Funcionários Company - Cadastrar cargos - V1.3.4");
         Navegador.atualizarTela();
     }
     
     public static void cargosConsultar(){
-        Sistema.tela = new CargosConsultar();  
-        Sistema.frame.setTitle("Funcionários Company - Consultar cargos - V1.3.2");      
+        Sistema.JPtela = new CargosConsultar();  
+        Sistema.JFframe.setTitle("Funcionários Company - Consultar cargos - V1.3.4");      
         Navegador.atualizarTela();
     }
     
     public static void cargosEditar(Cargo cargoAtual){
-        Sistema.tela = new CargosEditar(cargoAtual);      
-        Sistema.frame.setTitle("Funcionários Company - Editar cargos - V1.3.2");  
+        Sistema.JPtela = new CargosEditar(cargoAtual);      
+        Sistema.JFframe.setTitle("Funcionários Company - Editar cargos - V1.3.4");  
         Navegador.atualizarTela();
     }
     
@@ -98,11 +102,11 @@ public class Navegador {
     
     // Método que remove a tela atual e adiciona a próxima tela
     private static void atualizarTela(){
-        Sistema.frame.getContentPane().removeAll();
-        Sistema.tela.setVisible(true);
-        Sistema.frame.add(Sistema.tela);
+        Sistema.JFframe.getContentPane().removeAll();
+        Sistema.JPtela.setVisible(true);
+        Sistema.JFframe.add(Sistema.JPtela);
         
-        Sistema.frame.setVisible(true);
+        Sistema.JFframe.setVisible(true);
     }
     
     private static void construirMenu(){
@@ -152,14 +156,14 @@ public class Navegador {
         if(!menuConstruido) construirMenu();
         if(!menuHabilitado){
             menuHabilitado = true;
-            Sistema.frame.setJMenuBar(menuBar);
+            Sistema.JFframe.setJMenuBar(menuBar);
         }
     }
     
     public static void desabilitaMenu(){
         if(menuHabilitado){
             menuHabilitado = false;
-            Sistema.frame.setJMenuBar(null);
+            Sistema.JFframe.setJMenuBar(null);
         }        
     }
 

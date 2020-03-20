@@ -1,12 +1,14 @@
 package sistema.telas;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import sistema.Navegador;
 
 public class Inicio extends JPanel {
      
-    JLabel labelTitulo, labelDev, labelEmail, labelAutor, labelVersao;
+    JLabel lblTitle, lblDev, lblEmail, lblAuthor, lblVersion;
 
     public Inicio(){
         criarComponentes();
@@ -16,32 +18,25 @@ public class Inicio extends JPanel {
     }
 
     private void criarComponentes(){
-
         setLayout(null);
-        /*
-        labelTitulo = new JLabel("Escolha uma opção no menu superior"
-        		+ "\nSoftware Desenvolvido por: DevFML"
-        		+ "\nAutor: Eduardo Sayans"
-        		+ "\ndevfastml@outlook.com"
-        		+ "\nVersão: 1.3", JLabel.CENTER);
-        */
-        labelTitulo = new JLabel("Escolha uma opção no menu superior", JLabel.CENTER);
-        labelAutor = new JLabel("Autor: Eduardo Sayans", JLabel.LEFT);
-        labelDev = new JLabel("Desenvolvido por DevFML", JLabel.LEFT);
-        labelEmail = new JLabel("devfastml@outlook.com", JLabel.LEFT);
-        labelVersao = new JLabel("Versão: 1.3.2", JLabel.LEFT);
+       
+        lblTitle = new JLabel("Escolha uma opção no menu superior", JLabel.CENTER);
+        lblAuthor = new JLabel("Autor: Eduardo Sayans", JLabel.LEFT);
+        lblDev = new JLabel("Desenvolvido por DevFML", JLabel.LEFT);
+        lblEmail = new JLabel("devfastml@outlook.com", JLabel.LEFT);
+        lblVersion = new JLabel("Versão: 1.3.4", JLabel.LEFT);
         
-        labelTitulo.setBounds(20, 100, 660, 40);
-        labelDev.setBounds(20, 440, 660, 40);
-        labelAutor.setBounds(20, 460, 660, 40);
-        labelEmail.setBounds(20, 480, 660, 40);
-        labelVersao.setBounds(20, 500, 660, 40);
+        lblTitle.setBounds(20, 100, 660, 40);
+        lblDev.setBounds(20, 440, 660, 40);
+        lblAuthor.setBounds(20, 460, 660, 40);
+        lblEmail.setBounds(20, 480, 660, 40);
+        lblVersion.setBounds(20, 500, 660, 40);
 
-        add(labelTitulo);
-        add(labelDev);
-        add(labelAutor);
-        add(labelEmail);
-        add(labelVersao);
+        add(lblTitle);
+        add(lblDev);
+        add(lblAuthor);
+        add(lblEmail);
+        add(lblVersion);
 
         setVisible(true);
     }

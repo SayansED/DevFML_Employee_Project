@@ -38,12 +38,12 @@ import sqlite.CriarBancoDeDados;
 
 public class FuncionariosInserir extends JPanel {
 
-	JLabel labelTitulo, labelNome, labelSobrenome, labelDataNascimento, labelEmail, labelCargo, labelSalario, labelId;
-	JTextField campoNome, campoSobrenome, campoEmail, campoCargo, campoId;
-	JFormattedTextField campoDataNascimento, campoSalario;
+	JLabel lblTitulo, llblNome, lblSobrenome, lblDataNascimento, lblEmail, lblCargo, lblSalario, lblId;
+	JTextField txtNome, txtSobrenome, txtEmail, txtCargo, txtId;
+	JFormattedTextField ftxtDataNascimento, ftxtSalario;
 	//JComboBox<Cargo> comboboxCargo;
-	JButton botaoGravar;
-	MaskFormatter mkSalario;
+	JButton btnGravar;
+	MaskFormatter mkfSalario;
 	ImageIcon imgSalvar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\save01.png");
 
 	public FuncionariosInserir(){
@@ -55,71 +55,71 @@ public class FuncionariosInserir extends JPanel {
 	private void criarComponentes() {
 		setLayout(null);
 
-		labelTitulo = new JLabel("Cadastro de Funcionario", JLabel.CENTER);
-		labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));
-		labelId = new JLabel("Id:", JLabel.LEFT);
-		campoId = new JTextField();
-		labelNome = new JLabel("Nome:", JLabel.LEFT);
-		campoNome = new JTextField();     
-		labelSobrenome = new JLabel("Sobrenome:", JLabel.LEFT);
-		campoSobrenome = new JTextField();     
-		labelDataNascimento = new JLabel("Data de Nascimento:", JLabel.LEFT);
-		campoDataNascimento = new JFormattedTextField();
+		lblTitulo = new JLabel("Cadastro de Funcionario", JLabel.CENTER);
+		lblTitulo.setFont(new Font(lblTitulo.getFont().getName(), Font.PLAIN, 20));
+		lblId = new JLabel("Id:", JLabel.LEFT);
+		txtId = new JTextField();
+		llblNome = new JLabel("Nome:", JLabel.LEFT);
+		txtNome = new JTextField();     
+		lblSobrenome = new JLabel("Sobrenome:", JLabel.LEFT);
+		txtSobrenome = new JTextField();     
+		lblDataNascimento = new JLabel("Data de Nascimento:", JLabel.LEFT);
+		ftxtDataNascimento = new JFormattedTextField();
 		try {
 			MaskFormatter dateMask= new MaskFormatter("##/##/####");
-			dateMask.install(campoDataNascimento);
+			dateMask.install(ftxtDataNascimento);
 		} catch (ParseException ex) {
 			Logger.getLogger(FuncionariosInserir.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		labelEmail = new JLabel("E-mail:", JLabel.LEFT);
-		campoEmail = new JTextField();     
-		labelCargo = new JLabel("Cargo:", JLabel.LEFT);
+		lblEmail = new JLabel("E-mail:", JLabel.LEFT);
+		txtEmail = new JTextField();     
+		lblCargo = new JLabel("Cargo:", JLabel.LEFT);
 		//comboboxCargo = new JComboBox();
-		campoCargo = new JTextField();
-		labelSalario = new JLabel("Salário:", JLabel.LEFT);
+		txtCargo = new JTextField();
+		lblSalario = new JLabel("Salário:", JLabel.LEFT);
 		DecimalFormat formatter = new DecimalFormat("0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
-		campoSalario = new JFormattedTextField(formatter);
+		ftxtSalario = new JFormattedTextField(formatter);
 		//campoSalario.setValue(0);
-		botaoGravar = new JButton("Adicionar", imgSalvar);
-		campoId.setEnabled(false);
-		campoId.setText("ID gerado automaticamente pelo banco de dados.");
+		btnGravar = new JButton("Adicionar", imgSalvar);
+		txtId.setEnabled(false);
+		txtId.setText("ID gerado automaticamente pelo banco de dados.");
 
-		labelTitulo.setBounds(20, 20, 660, 40);
-		labelId.setBounds(150, 100, 400, 20);
-		campoId.setBounds(150, 120, 400, 40);
+		lblTitulo.setBounds(20, 20, 660, 40);
+		lblId.setBounds(150, 100, 400, 20);
+		txtId.setBounds(150, 120, 400, 40);
 
-		labelNome.setBounds(150, 160, 400, 20);
-		campoNome.setBounds(150, 180, 400, 40);
-		labelSobrenome.setBounds(150, 220, 400, 20);
-		campoSobrenome.setBounds(150, 240, 400, 40);
-		labelDataNascimento.setBounds(150, 280, 400, 20);
-		campoDataNascimento.setBounds(150, 300, 400, 40);
-		labelEmail.setBounds(150, 340, 400, 20);
-		campoEmail.setBounds(150, 360, 400, 40);
-		labelCargo.setBounds(150, 400, 400, 20);
+		llblNome.setBounds(150, 160, 400, 20);
+		txtNome.setBounds(150, 180, 400, 40);
+		lblSobrenome.setBounds(150, 220, 400, 20);
+		txtSobrenome.setBounds(150, 240, 400, 40);
+		lblDataNascimento.setBounds(150, 280, 400, 20);
+		ftxtDataNascimento.setBounds(150, 300, 400, 40);
+		lblEmail.setBounds(150, 340, 400, 20);
+		txtEmail.setBounds(150, 360, 400, 40);
+		lblCargo.setBounds(150, 400, 400, 20);
 		//comboboxCargo.setBounds(150, 340, 400, 40);
-		campoCargo.setBounds(150, 420, 400, 40);
-		labelSalario.setBounds(150, 460, 400, 20);
-		campoSalario.setBounds(150, 480, 400, 40);
-		botaoGravar.setBounds(560, 480, 150, 40); 
+		txtCargo.setBounds(150, 420, 400, 40);
+		lblSalario.setBounds(150, 460, 400, 20);
+		ftxtSalario.setBounds(150, 480, 400, 40);
+		btnGravar.setBounds(560, 480, 150, 40); 
 
-		add(labelTitulo);
-		add(labelId);
-		add(campoId);
-		add(labelNome);
-		add(campoNome);
-		add(labelSobrenome);
-		add(campoSobrenome);
-		add(labelDataNascimento);
-		add(campoDataNascimento);
-		add(labelEmail);
-		add(campoEmail);
-		add(labelCargo);
+		add(lblTitulo);
+		add(lblId);
+		add(txtId);
+		add(llblNome);
+		add(txtNome);
+		add(lblSobrenome);
+		add(txtSobrenome);
+		add(lblDataNascimento);
+		add(ftxtDataNascimento);
+		add(lblEmail);
+		add(txtEmail);
+		add(lblCargo);
 		//add(comboboxCargo);
-		add(campoCargo);
-		add(labelSalario);
-		add(campoSalario);
-		add(botaoGravar);
+		add(txtCargo);
+		add(lblSalario);
+		add(ftxtSalario);
+		add(btnGravar);
 
 		sqlCarregarCargos();
 
@@ -127,20 +127,17 @@ public class FuncionariosInserir extends JPanel {
 	}
 
 	private void criarEventos() {
-		botaoGravar.addActionListener(new ActionListener() {
+		btnGravar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Funcionario novoFuncionario = new Funcionario();
-				novoFuncionario.setFuncionarioNome(campoNome.getText());
-				novoFuncionario.setFuncionarioSobrenome(campoSobrenome.getText());
-				novoFuncionario.setFuncionarioDataNascimento(campoDataNascimento.getText());
-				novoFuncionario.setFuncionarioEmail(campoEmail.getText());
-				novoFuncionario.setFuncionarioCargo(campoCargo.getText());
-				novoFuncionario.setFuncionarioSalario(campoSalario.getText().replace(",", "."));
-
+				novoFuncionario.setFuncionarioNome(txtNome.getText());
+				novoFuncionario.setFuncionarioSobrenome(txtSobrenome.getText());
+				novoFuncionario.setFuncionarioDataNascimento(ftxtDataNascimento.getText());
+				novoFuncionario.setFuncionarioEmail(txtEmail.getText());
+				novoFuncionario.setFuncionarioCargo(txtCargo.getText());
+				novoFuncionario.setFuncionarioSalario(ftxtSalario.getText().replace(",", "."));
 				sqlInserirFuncionario(novoFuncionario);   
-
-				System.out.println("Inseriu: " + novoFuncionario.getFuncionarioNome());
 			}
 		});
 	}
@@ -151,9 +148,9 @@ public class FuncionariosInserir extends JPanel {
 
 	private void sqlInserirFuncionario(Funcionario novoFuncionario) {
 
-		if(campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoEmail.getText().isEmpty() || 
-				campoCargo.getText().isEmpty() || campoDataNascimento.getText().isEmpty() || 
-				campoSalario.getText().length() <= 3) {
+		if(txtNome.getText().isEmpty() || txtSobrenome.getText().isEmpty() || txtEmail.getText().isEmpty() || 
+				txtCargo.getText().isEmpty() || ftxtDataNascimento.getText().isEmpty() || 
+				ftxtSalario.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campo", "Validação", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -167,13 +164,13 @@ public class FuncionariosInserir extends JPanel {
 		*/
 
 		// validando nome
-		if(campoNome.getText().length() <= 3){
+		if(txtNome.getText().length() <= 3){
 			JOptionPane.showMessageDialog(null, "Por favor, preencha o nome corretamente.");
 			return;
 		}
 
 		// validando sobrenome
-		if(campoSobrenome.getText().length() <= 3){
+		if(txtSobrenome.getText().length() <= 3){
 			JOptionPane.showMessageDialog(null, "Por favor, preencha o sobrenome corretamente.");
 			return;
 		}
@@ -187,7 +184,7 @@ public class FuncionariosInserir extends JPanel {
 		 */
 
 		// Validando Salario
-		if (campoSalario.getText().length() <= 3) {
+		if (ftxtSalario.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Por favor, preencha o salário corretamente.");
 			return;
 		}
@@ -205,8 +202,7 @@ public class FuncionariosInserir extends JPanel {
             return;
         }
 		 */
-
-		Funcionario funcionario = new Funcionario();
+		
 		// conexão
 		Conexao conexao = new Conexao();
 		CriarBancoDeDados criarBancoDeDados = new CriarBancoDeDados(conexao);
@@ -216,68 +212,23 @@ public class FuncionariosInserir extends JPanel {
 		ResultSet resultado = null;
 
 		try {
-			/*
-			String idFuncionario = campoId.getText();
-			funcionario.setFuncionarioId(idFuncionario);
-			*/
-			String nomeFuncionario = campoNome.getText();
-			funcionario.setFuncionarioNome(nomeFuncionario);
-			String sobrenomeFuncionario = campoSobrenome.getText();
-			funcionario.setFuncionarioSobrenome(sobrenomeFuncionario);
-			String dataNascimentoFuncionario = campoDataNascimento.getText();
-			funcionario.setFuncionarioDataNascimento(dataNascimentoFuncionario);
-			String emailFuncionario = campoEmail.getText();
-			funcionario.setFuncionarioEmail(emailFuncionario);
-			String cargoFuncionario = campoCargo.getText();
-			funcionario.setFuncionarioCargo(emailFuncionario);
-			String salarioFuncionario = campoSalario.getText();
-			funcionario.setFuncionarioSalario(salarioFuncionario);
+			String nomeFuncionario = txtNome.getText();
+			novoFuncionario.setFuncionarioNome(nomeFuncionario);
+			String sobrenomeFuncionario = txtSobrenome.getText();
+			novoFuncionario.setFuncionarioSobrenome(sobrenomeFuncionario);
+			String dataNascimentoFuncionario = ftxtDataNascimento.getText();
+			novoFuncionario.setFuncionarioDataNascimento(dataNascimentoFuncionario);
+			String emailFuncionario = txtEmail.getText();
+			novoFuncionario.setFuncionarioEmail(emailFuncionario);
+			String cargoFuncionario = txtCargo.getText();
+			novoFuncionario.setFuncionarioCargo(emailFuncionario);
+			String salarioFuncionario = ftxtSalario.getText();
+			novoFuncionario.setFuncionarioSalario(salarioFuncionario);
 			
-			// Versão nova - Modelo DAO
+			// Modelo DAO
 			ControllerFuncionario controllerFuncionario = new ControllerFuncionario();
-			controllerFuncionario.inserirUsuarioController(funcionario);
-			
-			/*
-    		// Versão antiga
-			conexao.conectar();
-			String sqlInsert = "INSERT INTO T_FUNCIONARIOS "
-					+ "(id, "
-					+ "nome, "
-					+ "sobrenome, "
-					+ "dataNascimento, "
-					+ "email, "
-					+ "cargo, "
-					+ "salario) "
-					+ "VALUES(?,?,?,?,?,?,?);";
-			preparedStatement = conexao.criarPreparedStatement(sqlInsert);
-			preparedStatement.setString(1, funcionario.getFuncionarioId());
-			preparedStatement.setString(2, funcionario.getFuncionarioNome());
-			preparedStatement.setString(3, funcionario.getFuncionarioSobrenome());
-			preparedStatement.setString(4, funcionario.getFuncionarioDataNascimento());
-			preparedStatement.setString(5, funcionario.getFuncionarioEmail());
-			preparedStatement.setString(6, funcionario.getFuncionarioCargo());
-			preparedStatement.setString(7, funcionario.getFuncionarioSalario());
-
-			int resultados = preparedStatement.executeUpdate();
-			if (resultados == 1) {
-				String  message = String.format("Funcionário: %s\nCadastrado com sucesso", nomeFuncionario);
-				JOptionPane.showMessageDialog(null, message, "Cadastro",JOptionPane.INFORMATION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "Funcionário não inserido");
-				return;
-			}
-
-			conexao.desconectar();
-
-
-        } catch (SQLException ex) {
-        	ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao carregar.");
-            Logger.getLogger(FuncionariosInserir.class.getName()).log(Level.SEVERE, null, ex);
-        }
-		*/
+			controllerFuncionario.inserirUsuarioController(novoFuncionario);
 		
-		// Versao Nova
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao carregar.");

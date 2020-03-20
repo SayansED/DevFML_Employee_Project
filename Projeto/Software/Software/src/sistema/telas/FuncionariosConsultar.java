@@ -28,11 +28,11 @@ import sistema.entidades.Funcionario;
 
 public class FuncionariosConsultar extends JPanel {
 
-	JLabel labelTitulo, labelFuncionario;
-	JTextField campoFuncionario;
-	JButton botaoPesquisar, botaoEditar, botaoExcluir;
+	JLabel lblTitulo, lblFuncionario;
+	JTextField txtFuncionario;
+	JButton btnPesquisar, btnEditar, btnExcluir;
 	DefaultListModel<Funcionario> listaFuncionariosModelo =  new DefaultListModel();
-	JList<Funcionario> listaFuncionarios;
+	//JList<Funcionario> listaFuncionarios;
 	ImageIcon imgPesquisar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\search03.png");
 	ImageIcon imgDeletar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\delete01.png");
 	ImageIcon imgEditar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\edit01.png"); 
@@ -46,66 +46,68 @@ public class FuncionariosConsultar extends JPanel {
 	public void criarComponentes() {
 		setLayout(null);
 
-		labelTitulo = new JLabel("Consulta de Funcionário", JLabel.CENTER);
-		labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));
-		labelFuncionario = new JLabel("Nome do Funcionário", JLabel.LEFT);
-		campoFuncionario = new JTextField();
-		botaoPesquisar = new JButton("Pesquisar Funcionário", imgPesquisar);
-		botaoEditar = new JButton("Editar Funcionário", imgEditar);
+		lblTitulo = new JLabel("Consulta de Funcionário", JLabel.CENTER);
+		lblTitulo.setFont(new Font(lblTitulo.getFont().getName(), Font.PLAIN, 20));
+		lblFuncionario = new JLabel("Nome do Funcionário", JLabel.LEFT);
+		txtFuncionario = new JTextField();
+		btnPesquisar = new JButton("Pesquisar Funcionário", imgPesquisar);
+		btnEditar = new JButton("Editar Funcionário", imgEditar);
 		//botaoEditar.setEnabled(false);
-		botaoEditar.setEnabled(true);
-		botaoExcluir = new JButton("Excluir Funcionário", imgDeletar);
+		btnEditar.setEnabled(true);
+		btnExcluir = new JButton("Excluir Funcionário", imgDeletar);
 		//botaoExcluir.setEnabled(false);
-		botaoExcluir.setEnabled(true);
+		btnExcluir.setEnabled(true);
 		listaFuncionariosModelo = new DefaultListModel();
+		/*
 		listaFuncionarios = new JList();
 		listaFuncionarios.setModel(listaFuncionariosModelo);
 		listaFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+		*/
 
-		labelTitulo.setBounds(20, 20, 660, 40);
-		labelFuncionario.setBounds(150, 120, 400, 20);
-		campoFuncionario.setBounds(150, 140, 400, 40);
-		botaoPesquisar.setBounds(560, 140, 200, 40);
-		listaFuncionarios.setBounds(150, 200, 400, 240);
-		botaoEditar.setBounds(560, 360, 200, 40);
-		botaoExcluir.setBounds(560, 400, 200, 40);
+		lblTitulo.setBounds(20, 20, 660, 40);
+		lblFuncionario.setBounds(150, 120, 400, 20);
+		txtFuncionario.setBounds(150, 140, 400, 40);
+		btnPesquisar.setBounds(560, 140, 200, 40);
+		//listaFuncionarios.setBounds(150, 200, 400, 240);
+		btnEditar.setBounds(560, 360, 200, 40);
+		btnExcluir.setBounds(560, 400, 200, 40);
 
-		add(labelTitulo);
-		add(labelFuncionario);
-		add(campoFuncionario);
-		add(listaFuncionarios);
-		add(botaoPesquisar);
-		add(botaoEditar);
-		add(botaoExcluir);
+		add(lblTitulo);
+		add(lblFuncionario);
+		add(txtFuncionario);
+		//add(listaFuncionarios);
+		add(btnPesquisar);
+		add(btnEditar);
+		add(btnExcluir);
 
 		setVisible(true);
 	}
 
 	public void criarEventos() {
 
-		botaoPesquisar.addActionListener(new ActionListener() {
+		btnPesquisar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(campoFuncionario.getText().isEmpty())
+				if(txtFuncionario.getText().isEmpty())
 					JOptionPane.showMessageDialog(null, "Preencha o campo", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-				sqlPesquisarFuncionarios(campoFuncionario.getText());
+				sqlPesquisarFuncionarios(txtFuncionario.getText());
 			}
 		});
 
 		// ERRO
-		botaoEditar.addActionListener(new ActionListener() {
-			String funcionarioAtual = campoFuncionario.getText();
+		btnEditar.addActionListener(new ActionListener() {
+			String funcionarioAtual = txtFuncionario.getText();
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Navegador.funcionariosEditar(funcionarioAtual);
 			}
 		});
 
-		botaoExcluir.addActionListener(new ActionListener() {
+		btnExcluir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Validando campo e nome
-				if(campoFuncionario.getText().isEmpty() || campoFuncionario.getText().length() <= 3) {
+				if(txtFuncionario.getText().isEmpty() || txtFuncionario.getText().length() <= 3) {
 					JOptionPane.showMessageDialog(null, "Preencha o campo corretamente", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
@@ -113,25 +115,22 @@ public class FuncionariosConsultar extends JPanel {
 			}
 		});
 
-		/*listaFuncionarios.addListSelectionListener(new ListSelectionListener() {
+		/*
+		listaFuncionarios.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                funcionarioAtual = listaFuncionarios.getSelectedValue();
-                if(funcionarioAtual == null) {
-                    botaoEditar.setEnabled(false);
-                    botaoExcluir.setEnabled(false);
-                } else {
-                    botaoEditar.setEnabled(true);
-                    botaoExcluir.setEnabled(true);
-                }
+            	Funcionario listFuncionario = new Funcionario();
+            	listFuncionario = listaFuncionarios.getSelectedValue();
+               listaFuncionarios.addNotify();
             }
-        });*/
+        });
+		*/
 	}
 
 	private void sqlPesquisarFuncionarios(String nome) {
 
 		// Validando campo
-		if(campoFuncionario.getText().length() <= 3) {
+		if(txtFuncionario.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Por favor inserir o Funcionário correto");
 			return;
 		}
@@ -194,7 +193,7 @@ public class FuncionariosConsultar extends JPanel {
 	}
 
 	private void sqlDeletarFuncionario() {
-		String nomeFuncionario = campoFuncionario.getText();
+		String nomeFuncionario = txtFuncionario.getText();
 		String pergunta = "Deseja realmente excluir o Funcionário " + nomeFuncionario + "?";
 		int confirmacao = JOptionPane.showConfirmDialog(null, pergunta,"Excluir", JOptionPane.YES_NO_OPTION);
 

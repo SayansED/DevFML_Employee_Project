@@ -20,7 +20,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import sqlite.Conexao;
 
 public class RelatoriosCargos extends JPanel {
-	JLabel labelTitulo, labelDescricao;
+	JLabel lblTitulo, lblDescricao;
 
 	public RelatoriosCargos() {
 		criarComponentes();
@@ -31,9 +31,9 @@ public class RelatoriosCargos extends JPanel {
 	private void criarComponentes() {
 		setLayout(null);
 
-		labelTitulo = new JLabel("Relatório", JLabel.CENTER);
-		labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));
-		labelDescricao = new JLabel("Esse gráfico representa a quantidade de funcionários por cargo", JLabel.CENTER);
+		lblTitulo = new JLabel("Relatório", JLabel.CENTER);
+		lblTitulo.setFont(new Font(lblTitulo.getFont().getName(), Font.PLAIN, 20));
+		lblDescricao = new JLabel("Esse gráfico representa a quantidade de funcionários por cargo", JLabel.CENTER);
 
 		DefaultPieDataset dadosGrafico = this.criarDadosGrafico();
 
@@ -55,12 +55,12 @@ public class RelatoriosCargos extends JPanel {
 			}
 		};
 
-		labelTitulo.setBounds(20, 20, 660, 40);
-		labelDescricao.setBounds(20, 50, 660, 40);
+		lblTitulo.setBounds(20, 20, 660, 40);
+		lblDescricao.setBounds(20, 50, 660, 40);
 		chartPanel.setBounds(20, 100, 660, 340);
 
-		add(labelTitulo);
-		add(labelDescricao);
+		add(lblTitulo);
+		add(lblDescricao);
 		add(chartPanel);
 
 		setVisible(true);

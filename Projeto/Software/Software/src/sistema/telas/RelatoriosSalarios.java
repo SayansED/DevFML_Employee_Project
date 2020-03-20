@@ -25,7 +25,7 @@ import sqlite.Conexao;
 
 public class RelatoriosSalarios extends JPanel{
     
-    JLabel labelTitulo, labelDescricao;
+    JLabel lblTitulo, lblDescricao;
             
     public RelatoriosSalarios(){
         criarComponentes();
@@ -36,9 +36,9 @@ public class RelatoriosSalarios extends JPanel{
     private void criarComponentes() {
         setLayout(null);
         
-        labelTitulo = new JLabel("Relatórios", JLabel.CENTER);
-        labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));
-        labelDescricao = new JLabel("Esse gráfico representa a quantidade de funcionários por faixas de salário", 
+        lblTitulo = new JLabel("Relatórios", JLabel.CENTER);
+        lblTitulo.setFont(new Font(lblTitulo.getFont().getName(), Font.PLAIN, 20));
+        lblDescricao = new JLabel("Esse gráfico representa a quantidade de funcionários por faixas de salário", 
                 JLabel.CENTER);
         
         CategoryDataset dadosGrafico = this.criarDadosGrafico();
@@ -55,7 +55,7 @@ public class RelatoriosSalarios extends JPanel{
         plot.getRangeAxis().setRange(new Range(0, 5));
         plot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
         plot.getRangeAxis().setAutoRange(false);
-        Font font3 = new Font(labelTitulo.getFont().getName(), Font.PLAIN, 10); 
+        Font font3 = new Font(lblTitulo.getFont().getName(), Font.PLAIN, 10); 
         plot.getRangeAxis().setLabelFont(font3);
         
         plot.getDomainAxis().setVisible(false);
@@ -70,12 +70,12 @@ public class RelatoriosSalarios extends JPanel{
             }
         };
         
-        labelTitulo.setBounds(20, 20, 660, 40);
-        labelDescricao.setBounds(20, 50, 660, 40);
+        lblTitulo.setBounds(20, 20, 660, 40);
+        lblDescricao.setBounds(20, 50, 660, 40);
         chartPanel.setBounds(20, 100, 660, 340);
         
-        add(labelTitulo);
-        add(labelDescricao);
+        add(lblTitulo);
+        add(lblDescricao);
         add(chartPanel);
         
         setVisible(true);

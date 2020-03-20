@@ -32,14 +32,14 @@ import javax.swing.ImageIcon;
 public class CargosConsultar extends JPanel {
 
 	Cargo cargoAtual;
-	JLabel labelTitulo, labelCargo;
-	JTextField campoCargo;
-	JButton botaoPesquisar, botaoEditar, botaoExcluir,  label;
-	DefaultListModel<Cargo> listasCargosModelo = new DefaultListModel();
-	JList<Cargo> listaCargos;
-	ImageIcon imgPesquisar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\search03.png");
-	ImageIcon imgDeletar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\delete01.png");
-	ImageIcon imgEditar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\edit01.png");
+	JLabel lblTitle, lblCargo;
+	JTextField txtCampoCargo;
+	JButton btnPesquisar, btnEditar, btnExcluir;
+	DefaultListModel<Cargo> listCargosModel = new DefaultListModel();
+	JList<Cargo> listCargos;
+	ImageIcon imgIconPesquisar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\search03.png");
+	ImageIcon imgIconDeletar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\delete01.png");
+	ImageIcon imgIconEditar = new ImageIcon("C:\\Users\\Eduardo\\Desktop\\Projeto\\Software\\Software\\img\\edit01.png");
 
 	public CargosConsultar(){
 		criarComponentes();
@@ -50,17 +50,17 @@ public class CargosConsultar extends JPanel {
 	private void criarComponentes() {
 		setLayout(null);
 
-		labelTitulo = new JLabel("Consulta de Cargos", JLabel.CENTER);
-		labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.PLAIN, 20));      
-		labelCargo = new JLabel("Nome do cargo", JLabel.LEFT);
-		campoCargo = new JTextField();
-		botaoPesquisar = new JButton("Pesquisar Cargo", imgPesquisar);
-		botaoEditar = new JButton("Editar Cargo", imgEditar);
+		lblTitle = new JLabel("Consulta de Cargos", JLabel.CENTER);
+		lblTitle.setFont(new Font(lblTitle.getFont().getName(), Font.PLAIN, 20));      
+		lblCargo = new JLabel("Nome do cargo", JLabel.LEFT);
+		txtCampoCargo = new JTextField();
+		btnPesquisar = new JButton("Pesquisar Cargo", imgIconPesquisar);
+		btnEditar = new JButton("Editar Cargo", imgIconEditar);
 		//botaoEditar.setEnabled(false);
-		botaoExcluir = new JButton("Excluir Cargo", imgDeletar);
+		btnExcluir = new JButton("Excluir Cargo", imgIconDeletar);
 		//botaoExcluir.setEnabled(false);
-		botaoEditar.setEnabled(true);
-		botaoExcluir.setEnabled(true);
+		btnEditar.setEnabled(true);
+		btnExcluir.setEnabled(true);
 		/*
 		listasCargosModelo = new DefaultListModel();
 		listaCargos = new JList();
@@ -69,23 +69,23 @@ public class CargosConsultar extends JPanel {
 		 */
 
 
-		labelTitulo.setBounds(20, 20, 660, 40);
-		labelCargo.setBounds(150, 120, 400, 20);
-		campoCargo.setBounds(150, 140, 400, 40);
-		botaoPesquisar.setBounds(560, 140, 200, 40); 
+		lblTitle.setBounds(20, 20, 660, 40);
+		lblCargo.setBounds(150, 120, 400, 20);
+		txtCampoCargo.setBounds(150, 140, 400, 40);
+		btnPesquisar.setBounds(560, 140, 200, 40); 
 		//listaCargos.setBounds(150, 200, 400, 240);
-		botaoEditar.setBounds(560, 360, 180, 40); 
-		botaoExcluir.setBounds(560, 400, 180, 40);
+		btnEditar.setBounds(560, 360, 180, 40); 
+		btnExcluir.setBounds(560, 400, 180, 40);
 		
 		//botaoPesquisar.setBackground(Color.BLUE);
 		
-		add(labelTitulo);
-		add(labelCargo);
-		add(campoCargo);
+		add(lblTitle);
+		add(lblCargo);
+		add(txtCampoCargo);
 		//add(listaCargos);
-		add(botaoPesquisar);
-		add(botaoEditar);
-		add(botaoExcluir);
+		add(btnPesquisar);
+		add(btnEditar);
+		add(btnExcluir);
 		
 		/*
 		ImageIcon imgLogo = new ImageIcon("C:/Users/Eduardo/Desktop/Projeto/Sistema/img/icon1.png");
@@ -100,17 +100,17 @@ public class CargosConsultar extends JPanel {
 	private void criarEventos() {
 
 		// Pesquisar
-		botaoPesquisar.addActionListener(new ActionListener() {
+		btnPesquisar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(campoCargo.getText().isEmpty())
+				if(txtCampoCargo.getText().isEmpty())
 					JOptionPane.showMessageDialog(null, "Preencha o campo", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-				sqlPesquisarCargos(campoCargo.getText());
+				sqlPesquisarCargos(txtCampoCargo.getText());
 			}
 		});
 
 		// Editar
-		botaoEditar.addActionListener(new ActionListener() {
+		btnEditar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Navegador.cargosEditar(cargoAtual);
@@ -118,11 +118,11 @@ public class CargosConsultar extends JPanel {
 		});
 
 		// Excluir
-		botaoExcluir.addActionListener(new ActionListener() {
+		btnExcluir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Validando campo e nome
-				if(campoCargo.getText().isEmpty() || campoCargo.getText().length() <= 3) {
+				if(txtCampoCargo.getText().isEmpty() || txtCampoCargo.getText().length() <= 3) {
 					JOptionPane.showMessageDialog(null, "Preencha o campo corretamente", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
@@ -149,7 +149,7 @@ public class CargosConsultar extends JPanel {
 	private void sqlPesquisarCargos(String nome) {
 		
 		// Validando campo
-		if(campoCargo.getText().length() <= 3) {
+		if(txtCampoCargo.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Por favor inserir o cargo");
 			return;
 		}
@@ -203,7 +203,7 @@ public class CargosConsultar extends JPanel {
 	}
 
 	private void sqlDeletarCargo() {
-		int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o Cargo " + campoCargo.getText() + "?", "Excluir", JOptionPane.YES_NO_OPTION);
+		int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o Cargo " + txtCampoCargo.getText() + "?", "Excluir", JOptionPane.YES_NO_OPTION);
 		if(confirmacao == JOptionPane.YES_OPTION) {
 			// conexão
 			Conexao conexao = new Conexao();
@@ -212,7 +212,7 @@ public class CargosConsultar extends JPanel {
 			// resultados
 			ResultSet resultados = null;
 
-			String nomeCargo = campoCargo.getText();
+			String nomeCargo = txtCampoCargo.getText();
 
 			try {
 				// Conectando - Driver

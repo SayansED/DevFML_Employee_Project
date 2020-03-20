@@ -32,7 +32,7 @@ public class DAO {
 	/**
 	 * Salvar um novo Funcionário
 	 * @param pFuncionario
-	 * @re
+	 * @return
 	 * */
 	public boolean inserirFuncionario(Funcionario pFuncionario) {
 		funcionario = new Funcionario();
@@ -46,7 +46,6 @@ public class DAO {
 				+ "salario) "
 				+ "VALUES(?,?,?,?,?,?);";
 		try {
-			System.out.println("DAO");
 			preparedStatement = conexao.criarPreparedStatement(sqlInsertFuncionario, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, pFuncionario.getFuncionarioNome());
 			preparedStatement.setString(2, pFuncionario.getFuncionarioSobrenome());
@@ -54,7 +53,13 @@ public class DAO {
 			preparedStatement.setString(4, pFuncionario.getFuncionarioEmail());
 			preparedStatement.setString(5, pFuncionario.getFuncionarioCargo());
 			preparedStatement.setString(6, pFuncionario.getFuncionarioSalario());
-			preparedStatement.executeUpdate();
+			int resultados = preparedStatement.executeUpdate();
+			if (resultados == 1) {
+				String  message = String.format("Funcionário: %s\nCadastrado com sucesso", pFuncionario.getFuncionarioNome());
+				JOptionPane.showMessageDialog(null, message, "Cadastro",JOptionPane.INFORMATION_MESSAGE);
+			} 
+			else 
+				JOptionPane.showMessageDialog(null, "Funcionário não inserido");
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -66,11 +71,11 @@ public class DAO {
 		conexao.desconectar();
 		return true;
 	}
-	
+
 	/**
 	 * Salvar um novo Cargo
 	 * @param pCargo
-	 * @re
+	 * @return  
 	 * */
 	public boolean inserirCargo(Cargo pCargo) {
 		cargo = new Cargo();
@@ -79,12 +84,16 @@ public class DAO {
 				+ "(nome) "
 				+ "VALUES(?);";
 		try {
-			System.out.println("DAO");
-			preparedStatement = null;
 			preparedStatement = conexao.criarPreparedStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setString(1, cargo.getCargoNome());
-			preparedStatement.executeUpdate();
-			
+			preparedStatement.setString(1, pCargo.getCargoNome());
+			int resultados = preparedStatement.executeUpdate();
+			if (resultados == 1) {
+				String  message = String.format("Cargo: %s\nCadastrado com sucesso", pCargo.getCargoNome());
+				JOptionPane.showMessageDialog(null, message, "Cadastro",JOptionPane.INFORMATION_MESSAGE);
+			} 
+			else 
+				JOptionPane.showMessageDialog(null, "Cargo não inserido");
+
 		}
 		catch (SQLException ex) {
 			ex.printStackTrace();
