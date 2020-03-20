@@ -77,6 +77,8 @@ public class FuncionariosEditar extends JPanel {
 		campoSalario = new JFormattedTextField(formatter);
 		//campoSalario.setValue(0);
 		botaoGravar = new JButton("Salvar", imgSobrescrever);
+		campoId.enable(false);
+		campoId.setText("ID gerado automaticamente pelo banco de dados.");
 
 		labelTitulo.setBounds(20, 20, 660, 40);
 		labelId.setBounds(150, 80, 400, 20);
@@ -122,7 +124,7 @@ public class FuncionariosEditar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Funcionario funcionario = new Funcionario();
 				// Passando valores
-				funcionario.setFuncionarioId(campoId.getText());
+				//funcionario.setFuncionarioId(campoId.getText());
 				funcionario.setFuncionarioNome(campoNome.getText());
 				funcionario.setFuncionarioSobrenome(campoSobrenome.getText());
 				funcionario.setFuncionarioDataNascimento(campoDataNascimento.getText());
@@ -138,17 +140,19 @@ public class FuncionariosEditar extends JPanel {
 
 	private void sqlAtualizarFuncionario() {
 
-		if(campoId.getText().isEmpty() ||campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoEmail.getText().isEmpty() || 
+		if(campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoEmail.getText().isEmpty() || 
 				campoCargo.getText().isEmpty() || campoDataNascimento.getText().isEmpty() || campoSalario.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campo", "Validação", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
+		/* Não será mais preciso usar, porque o id será gerado automaticamente
 		// Validando Id
 		if(campoId.getText().length() == 0 && campoId.getText().length() > 2) {
 			JOptionPane.showMessageDialog(null, "Por favor, preencha o id corretamente.");
 			return;
 		}
+		*/
 
 		// validando nome
 		if(campoNome.getText().length() <= 3){
@@ -200,17 +204,17 @@ public class FuncionariosEditar extends JPanel {
 		try {
 			// conectando ao banco de dados   
 			String busca = JOptionPane.showInputDialog("Digite o nome para a busca");
-			String sqlUpdate = "UPDATE T_FUNCIONARIOS SET id=?,nome=?,sobrenome=?,dataNascimento=?,email=?,cargo=?,salario=? WHERE nome=?;";
+			String sqlUpdate = "UPDATE T_FUNCIONARIOS SET nome=?,sobrenome=?,dataNascimento=?,email=?,cargo=?,salario=? WHERE nome=?;";
 			conexao.conectar();
 			preparedStatement = conexao.criarPreparedStatement(sqlUpdate);
-			preparedStatement.setString(1, campoId.getText());
-			preparedStatement.setString(2, campoNome.getText());
-			preparedStatement.setString(3, campoSobrenome.getText());
-			preparedStatement.setString(4, campoDataNascimento.getText());
-			preparedStatement.setString(5, campoEmail.getText());
-			preparedStatement.setString(6,campoCargo.getText());
-			preparedStatement.setString(7, campoSalario.getText().replace(",", "."));
-			preparedStatement.setString(8, busca);
+			//preparedStatement.setString(1, campoId.getText());
+			preparedStatement.setString(1, campoNome.getText());
+			preparedStatement.setString(2, campoSobrenome.getText());
+			preparedStatement.setString(3, campoDataNascimento.getText());
+			preparedStatement.setString(4, campoEmail.getText());
+			preparedStatement.setString(5,campoCargo.getText());
+			preparedStatement.setString(6, campoSalario.getText().replace(",", "."));
+			preparedStatement.setString(7, busca);
 			resultado = preparedStatement.executeUpdate();
 			if(resultado == 0) {
 				JOptionPane.showMessageDialog(null, "Funcionário não encontrado: " + busca, "Mensagem", JOptionPane.INFORMATION_MESSAGE);;

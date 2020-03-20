@@ -56,8 +56,8 @@ public class CriarBancoDeDados {
 	public void createTableCargos() {
 		String sql = "CREATE TABLE IF NOT EXISTS T_CARGOS"
 				+ "("
-				+ "id text NOT NULL,"
-				+ "nome text NOT NULL"
+				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "nome text"
 				+ ");";
 		boolean conectou = false;
 		try {

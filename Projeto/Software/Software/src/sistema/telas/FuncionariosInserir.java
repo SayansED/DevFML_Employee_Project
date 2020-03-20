@@ -81,6 +81,8 @@ public class FuncionariosInserir extends JPanel {
 		campoSalario = new JFormattedTextField(formatter);
 		//campoSalario.setValue(0);
 		botaoGravar = new JButton("Adicionar", imgSalvar);
+		campoId.setEnabled(false);
+		campoId.setText("ID gerado automaticamente pelo banco de dados.");
 
 		labelTitulo.setBounds(20, 20, 660, 40);
 		labelId.setBounds(150, 100, 400, 20);
@@ -150,17 +152,19 @@ public class FuncionariosInserir extends JPanel {
 	private void sqlInserirFuncionario(Funcionario novoFuncionario) {
 
 		if(campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoEmail.getText().isEmpty() || 
-				campoCargo.getText().isEmpty() || campoId.getText().isEmpty() || campoDataNascimento.getText().isEmpty() || 
+				campoCargo.getText().isEmpty() || campoDataNascimento.getText().isEmpty() || 
 				campoSalario.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campo", "Validação", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
+		/* Não será mais preciso usar, porque o id será gerado automaticamente
 		// Validando Id
 		if(campoId.getText().length() == 0 && campoId.getText().length() > 2) {
 			JOptionPane.showMessageDialog(null, "Por favor, preencha o id corretamente.");
 			return;
 		}
+		*/
 
 		// validando nome
 		if(campoNome.getText().length() <= 3){

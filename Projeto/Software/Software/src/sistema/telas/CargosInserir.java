@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
+import Controller.ControllerCargo;
+import Controller.ControllerFuncionario;
 import sqlite.Conexao;
 import sqlite.CriarBancoDeDados;
 import sistema.Navegador;
@@ -36,6 +38,8 @@ public class CargosInserir extends JPanel {
 		labelIdCargo = new JLabel("Id do cargo", JLabel.LEFT);
 		campoIdCargo = new JTextField();
 		botaoGravar = new JButton("Adcionar", imgSalvar);
+		campoIdCargo.setEnabled(false);
+		campoIdCargo.setText("ID gerado automaticamente pelo banco de dados");
 
 		labelTitulo.setBounds(20, 20, 660, 40);
 		labelNomeCargo.setBounds(150, 120, 400, 20);
@@ -62,9 +66,8 @@ public class CargosInserir extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Cargo novoCargo = new Cargo();
 				novoCargo.setCargoNome(campoNomeCargo.getText());
-				novoCargo.setCargoId(campoIdCargo.getText());
 				// Validando campo
-				if (campoNomeCargo.getText().isEmpty() || campoIdCargo.getText().isEmpty()) 
+				if (campoNomeCargo.getText().isEmpty()) 
 					JOptionPane.showMessageDialog(null, "Preencha todos os campo", "Validação", JOptionPane.WARNING_MESSAGE);
 				sqlInserirCargo(novoCargo);
 			}
@@ -76,18 +79,21 @@ public class CargosInserir extends JPanel {
 		PreparedStatement preparedStatement = null;
 		CriarBancoDeDados criarBancoDeDados = new CriarBancoDeDados(conexao);
 		Cargo cargo = new Cargo();
+		
+		String nomeCargo = campoNomeCargo.getText();
+		cargo.setCargoNome(nomeCargo);
 
 		// Validando nome
 		if(campoNomeCargo.getText().length() <= 3) {
 			JOptionPane.showMessageDialog(null, "Por favor inserir o nome completo");
 			return;
 		}
-		// Validando id
-		else if(campoIdCargo.getText().length() == 0) {
-			JOptionPane.showMessageDialog(null, "Por favor inserir o Id");
-			return;
-		}
 
+		// Versão nova - Modelo DAO
+		ControllerCargo controllerCargo = new ControllerCargo();
+		controllerCargo.inserirCargoController(cargo);
+
+		/*
 		try {
 			// SQLite	
 			String nomeCargo = campoNomeCargo.getText();
@@ -96,11 +102,11 @@ public class CargosInserir extends JPanel {
 			cargo.setCargoId(idCargo);
 
 			conexao.conectar();
-			String sqlInsert = "INSERT INTO T_CARGOS (id, nome) VALUES(?,?);";
+			String sqlInsert = "INSERT INTO T_CARGOS "
+					+ "(nome) "
+					+ "VALUES(?);";
 			preparedStatement = conexao.criarPreparedStatement(sqlInsert);
-
-			preparedStatement.setString(1, cargo.getCargoId());
-			preparedStatement.setString(2, cargo.getCargoNome());
+			preparedStatement.setString(1, cargo.getCargoNome());
 
 			int resultado = preparedStatement.executeUpdate();
 			if (resultado == 1) {
@@ -119,5 +125,6 @@ public class CargosInserir extends JPanel {
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao adicionar", "ERRO", JOptionPane.ERROR_MESSAGE);
 			Logger.getLogger(CargosInserir.class.getName()).log(Level.SEVERE, null, ex);
 		} 
+		 */
 	}
 }
