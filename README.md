@@ -1,5 +1,5 @@
 # DevFML_Employee_Project_V1.3.4
-Projetos desenvolvidos por DevFML - V1.3.4
+Projetos desenvolvidos por DevFML
 
 I am not responsible for any damage caused by installing the software on your hardware.
 
